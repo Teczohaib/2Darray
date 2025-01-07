@@ -1,0 +1,102 @@
+import java.util.*;
+public class main{
+    public static void main(String[] args) throws Exception {
+        Scanner scn=new Scanner(System.in);
+        int n=scn.nextInt();
+        int m=scn.nextInt();
+        int[][]a1=new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                a1[i][j]=scn.nextInt();
+
+            }
+            }}
+            int sno=scn.nextInt();
+            int rno=scn.nextInt();
+            ringrotate(a1,sno,rno);
+            display(a1);
+}
+public static void ringrotate(int[][]a1,int sno){
+    int[]la=fill1Dfrom2D(a1,sno);
+    rotate1D(a1,1a,sno);
+    fill2Dfrom1D(a1,la,sno);
+}
+public static int[] fill1Dfrom2D(int[][]a1,int sno){
+int rmin=sno-1;
+int cmin=sno-1;
+int rmax=a1.length-sno;
+int cmax=a1[0].length-sno;
+int sz=2*(rmax+cmax-rmin-cmin);
+int[]1a=new int[sz];
+int idx=0;
+for(int row=rmin;row<=rmax;row++){
+    la[idx]=a1[row][cmin];
+    idx++;
+}
+cmin++;
+for(int col=cmin;col<=cmax;col++){
+    la[idx]=a1[rmax][col];
+    idx++;
+}
+rmax--;
+for(int row=rmax;row>=rmin;row--){
+    la[idx]=a1[row][cmax];
+    idx++;
+}
+cmax--;
+for(int col=cmax;col>=cmin;col--){
+    la[idx]=a1[rmin][col];
+    idx++;
+}
+rmin++;
+return la;
+public staticvoid rotate1D(int[] la,int rno){
+    rno=rno%la.length;
+    if(rno<0){
+        rno+=la.length;
+    }
+    reverse(la,0,la.length);
+    reverse(la,0,rno-1);
+    reverse(la,rno,la.length-1);
+}
+public static void reverse(int[]la,int left,int right){
+    while(left<right){
+        int temp=la[left];
+        la[left]=la[right];
+        la[right]=temp;
+        left++;
+        right++;
+    }
+}
+public static void fill2Dfrom1D(int[][]a1,int[]la,int sno){
+    int rmin=sno-1;
+    int cmin=sno-1;
+    int rmax=a1.length-sno;
+    int cmax=a1[0].length-sno;
+    int idx=0;
+    for(int row=rmin;row<=rmax;row++){
+        a1[row][cmin]=la[idx];
+        idx++;
+
+    }
+    cmin++;
+    for(int col=cmin;col<=cmax;col++){
+    a1[rmax][col]=la[idx];
+    idx++;
+    }
+    rmax--;
+    for(int row=rmax>=rmin;row--){
+        a1[row][cmax]=la[idx];
+        idx++;
+    }
+    rmin++;
+}
+public static void display(int[][]a1){
+    for(int i=0;i<a1.length;i++){
+        for(int j=0;j<a1[0].length;j++)
+        System.out.print(a1[i][j]+"");
+    }
+    System.out.println();
+}
+
+}
